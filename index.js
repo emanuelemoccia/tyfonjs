@@ -1,7 +1,7 @@
 var request = require('request')
 var cache = require('memory-cache');
 require('dotenv').config()
-var baseUrl = 'http://localhost'
+var baseUrl = 'http://tyfon.io'
 var getUrl = (url) => {return baseUrl+url}
 
 module.exports = {
