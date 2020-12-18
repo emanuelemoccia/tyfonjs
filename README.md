@@ -10,10 +10,11 @@ Open the project folder and install it's dependencies. You can use any package m
 cd app
 npm install tyfon-js
 ```
+## Docs
+<a href="http://docs.tyfon.io/" target="_blank">docs.tyfon.io</a>
 
-## JS
 
-
+## Usage
 ```jsx
 var tyfon = require('tyfonjs'),
 express = require('express'),
