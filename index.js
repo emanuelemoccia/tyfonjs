@@ -121,7 +121,20 @@ module.exports = {
             }); */
             const data = [
                 {
-                    service: 'b133a0c0e9bee3be20163d2ad31d6248db292aa6dcb1ee087a2aa50e0fc75ae2'
+                    numeroContratto:"012345",
+                    indirizzo:"Via G. Paisiello 15, 80010 Quarto (NA)",
+                    statoAbbonamento:"ATTIVO",
+                    metodoPagamento:"SDD",
+                    statoPagamento:"IN SCADENZA",
+                    image:"/static/images/image.jpg",
+                },
+                {
+                    numeroContratto:"067891",
+                    indirizzo:"Via A. De Gasperi 11, 80010 Quarto (NA)",
+                    statoAbbonamento:"ATTIVO",
+                    metodoPagamento:"CONTANTI",
+                    statoPagamento:"IN SCADENZA",
+                    image:"/static/images/home.jpg",
                 }
               ];
               resolve(data);
