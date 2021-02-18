@@ -1,23 +1,26 @@
 var request = require('request')
 var cache = require('memory-cache');
-require('dotenv').config()
-var baseUrl = 'http://tyfon.io'
-var getUrl = (url) => {return baseUrl+url}
+require('dotenv').config();
+var u = require('./u');
+var cipherpool = u._CipherPool();
+var ot = u._Protect(cipherpool);
+var data = JSON.parse(ot)
+var bu = data[0][0]
 
 module.exports = {
     auth: () => {
         var options = {
             method: 'POST',
-            url: getUrl('/oauth/token'),
+            url: u._BaseAddress(bu, '/oauth/token'),
             headers: {
               'Content-Type': 'application/x-www-form-urlencoded'
             },
             form: {
-                grant_type: process.env.REACT_APP_GRANT_TYPE,
-                client_id: process.env.REACT_APP_CLIENT_ID,
-                client_secret: process.env.REACT_APP_CLIENT_SECRET,
-                username: process.env.REACT_APP_APP_ID,
-                password: process.env.REACT_APP_API_KEY
+                grant_type: process.env.TYFON_APP_GRANT_TYPE,
+                client_id: process.env.TYFON_APP_CLIENT_ID,
+                client_secret: process.env.TYFON_APP_CLIENT_SECRET,
+                username: process.env.TYFON_APP_APP_ID,
+                password: process.env.TYFON_APP_API_KEY
             }
         }
         return new Promise((resolve, reject) => {
@@ -39,7 +42,7 @@ module.exports = {
     checkAuth: () => {
         var options = {
             method: 'GET',
-            url: getUrl('/api/check-auth'),
+            url: u._BaseAddress(bu,'/api/check-auth'),
             'headers': {
               'Authorization': 'Bearer '+cache.get('_ta')
             }
@@ -54,7 +57,7 @@ module.exports = {
     getIntDocs: () => {
         var options = {
             method: 'GET',
-            url: getUrl('/api/check-auth'),
+            url: u._BaseAddress(bu,'/api/check-auth'),
             'headers': {
               'Authorization': 'Bearer '+cache.get('_ta')
             }
@@ -87,7 +90,7 @@ module.exports = {
     getInts: () => {
         var options = {
             method: 'GET',
-            url: getUrl('/api/check-auth'),
+            url: u._BaseAddress(bu,'/api/check-auth'),
             'headers': {
               'Authorization': 'Bearer '+cache.get('_ta')
             }
@@ -109,7 +112,7 @@ module.exports = {
     getServices: () => {
         var options = {
             method: 'GET',
-            url: getUrl('/api/check-auth'),
+            url: u._BaseAddress(bu,'/api/check-auth'),
             'headers': {
               'Authorization': 'Bearer '+cache.get('_ta')
             }
@@ -143,14 +146,14 @@ module.exports = {
     refresh: () => {
         var options = {
             method: 'POST',
-            url: getUrl('/oauth/token'),
+            url: u._BaseAddress(bu,'/oauth/token'),
             headers: {
               'Content-Type': 'application/x-www-form-urlencoded'
             },
             form: {
                 grant_type: 'refresh_token',
-                client_id: process.env.REACT_APP_CLIENT_ID,
-                client_secret: process.env.REACT_APP_CLIENT_SECRET,
+                client_id: process.env.TYFON_APP_CLIENT_ID,
+                client_secret: process.env.TYFON_APP_CLIENT_SECRET,
                 refresh_token: cache.get('_tr')
             }
         }
@@ -166,5 +169,12 @@ module.exports = {
                 }
             });
         })
-      }
+    }
 };
+module.exports.auth()
+.then(res => {
+    console.log(res);
+})
+.catch(Err => {
+    console.log(Err)
+})
