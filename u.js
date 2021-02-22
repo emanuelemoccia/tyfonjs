@@ -7,6 +7,10 @@ module.exports = {
         var bytes  = CryptoJS.AES.decrypt(uintptr, process.env.TYFON_AF_KEY);
         return bytes.toString(CryptoJS.enc.Utf8);
     },
+    _Unprotect:(uintptr) => {
+        var enc  = CryptoJS.AES.encrypt(uintptr, process.env.TYFON_AF_KEY);
+        return enc;
+    },
     _BaseAddress:(base64, url) => {
         return base64.concat(url)
     }
