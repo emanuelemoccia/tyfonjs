@@ -5,7 +5,7 @@ var u = require('./u');
 var cipherpool = u._CipherPool();
 var ot = u._Protect(cipherpool);
 var data = JSON.parse(ot)
-var bu = data[0][0]
+var bu = data[0][0];
 
 module.exports = {
     auth: () => {
@@ -35,7 +35,6 @@ module.exports = {
                     cache.put('_tr', _t.refresh_token);
                     resolve(response.body);
                 }
-                
             });
         })
     },
@@ -171,10 +170,3 @@ module.exports = {
         })
     }
 };
-module.exports.auth()
-.then(res => {
-    console.log(res);
-})
-.catch(Err => {
-    console.log(Err)
-})
