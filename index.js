@@ -108,38 +108,49 @@ module.exports = {
               resolve(data);
         })
     },
-    getServices: () => {
+    getServices: (id) => {
         var options = {
             method: 'GET',
-            url: u._BaseAddress(bu,'/api/check-auth'),
+            url: u._BaseAddress(bu,'/api/areaClienti/getServices/'+id),
             'headers': {
               'Authorization': 'Bearer '+cache.get('_ta')
             }
         };
         return new Promise((resolve, reject) => {
-           /*  request(options, function (error, response) {
+            request(options, function (error, response) {
                 if (error) reject(error);
                 resolve(response.body);
-            }); */
-            const data = [
-                {
-                    numeroContratto:"012345",
-                    indirizzo:"Via G. Paisiello 15, 80010 Quarto (NA)",
-                    statoAbbonamento:"ATTIVO",
-                    metodoPagamento:"SDD",
-                    statoPagamento:"IN SCADENZA",
-                    image:"/static/images/image.jpg",
-                },
-                {
-                    numeroContratto:"067891",
-                    indirizzo:"Via A. De Gasperi 11, 80010 Quarto (NA)",
-                    statoAbbonamento:"ATTIVO",
-                    metodoPagamento:"CONTANTI",
-                    statoPagamento:"IN SCADENZA",
-                    image:"/static/images/home.jpg",
-                }
-              ];
-              resolve(data);
+            });
+        })
+    },
+    getProducts: (id) => {
+        var options = {
+            method: 'GET',
+            url: u._BaseAddress(bu,'/api/areaClienti/getProducts/'+id),
+            'headers': {
+              'Authorization': 'Bearer '+cache.get('_ta')
+            }
+        };
+        return new Promise((resolve, reject) => {
+            request(options, function (error, response) {
+                if (error) reject(error);
+                resolve(response.body);
+            });
+        })
+    },
+    getOperations: (id, data) => {
+        var options = {
+            method: 'GET',
+            url: u._BaseAddress(bu,'/api/areaClienti/getOperations/'+id+'/'+data),
+            'headers': {
+              'Authorization': 'Bearer '+cache.get('_ta')
+            }
+        };
+        return new Promise((resolve, reject) => {
+            request(options, function (error, response) {
+                if (error) reject(error);
+                resolve(response.body);
+            });
         })
     },
     refresh: () => {
@@ -154,6 +165,46 @@ module.exports = {
                 client_id: process.env.TYFON_APP_CLIENT_ID,
                 client_secret: process.env.TYFON_APP_CLIENT_SECRET,
                 refresh_token: cache.get('_tr')
+            }
+        }
+        return new Promise((resolve, reject) => {
+            request(options, function (error, response) {
+                if (error) {
+                    reject(error);
+                } else {
+                    var _t = JSON.parse(response.body);
+                    cache.put('_ta', _t.access_token);
+                    cache.put('_tr', _t.refresh_token);
+                    resolve(response.body);
+                }
+            });
+        })
+    },
+    getUser: (id) => {
+        var options = {
+            method: 'GET',
+            url: u._BaseAddress(bu,'/api/areaClienti/getUser/'+id),
+            'headers': {
+              'Authorization': 'Bearer '+cache.get('_ta')
+            }
+        };
+        return new Promise((resolve, reject) => {
+            request(options, function (error, response) {
+                if (error) reject(error);
+                resolve(response.body);
+            });
+        })
+    },
+    updateUser: (user) => {
+        var options = {
+            method: 'POST',
+            url: u._BaseAddress(bu,'/api/areaClienti/updateUser/'+user.id),
+            headers: {
+              'Content-Type': 'application/x-www-form-urlencoded'
+            },
+            form: {
+                email: user.email,
+                tel: user.tel
             }
         }
         return new Promise((resolve, reject) => {
