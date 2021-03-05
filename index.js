@@ -28,12 +28,14 @@ module.exports = {
                 if (error) {
                     reject(error);
                 } else {
-                    //cache.put('foo', 'bar');
-                    var _t = JSON.parse(response.body);
-                    console.log(_t.access_token)
-                    cache.put('_ta', _t.access_token);
-                    cache.put('_tr', _t.refresh_token);
-                    resolve(response.body);
+                    if(response.statusCode < 400) {
+                        var _t = JSON.parse(response.body);
+                        cache.put('_ta', _t.access_token);
+                        cache.put('_tr', _t.refresh_token);
+                        resolve(response.body);
+                    } else {
+                        reject(response.body);
+                    }
                 }
             });
         })
@@ -48,8 +50,15 @@ module.exports = {
         };
         return new Promise((resolve, reject) => {
             request(options, function (error, response) {
-                if (error) reject(error);
-                resolve(response.body);
+                if (error) {
+                    reject(error);
+                } else {
+                    if(response.statusCode < 400) {
+                        resolve(response.body);
+                    } else {
+                        reject(response.body);
+                    }
+                }
             });
         })
     },
@@ -63,8 +72,15 @@ module.exports = {
         };
         return new Promise((resolve, reject) => {
             request(options, function (error, response) {
-                if (error) reject(error);
-                resolve(response.body);
+                if (error) {
+                    reject(error);
+                } else {
+                    if(response.statusCode < 400) {
+                        resolve(response.body);
+                    } else {
+                        reject(response.body);
+                    }
+                }
             });
         })
     },
@@ -93,8 +109,15 @@ module.exports = {
         };
         return new Promise((resolve, reject) => {
             request(options, function (error, response) {
-                if (error) reject(error);
-                resolve(response.body);
+                if (error) {
+                    reject(error);
+                } else {
+                    if(response.statusCode < 400) {
+                        resolve(response.body);
+                    } else {
+                        reject(response.body);
+                    }
+                }
             });
         })
     },
@@ -117,10 +140,14 @@ module.exports = {
                 if (error) {
                     reject(error);
                 } else {
-                    var _t = JSON.parse(response.body);
-                    cache.put('_ta', _t.access_token);
-                    cache.put('_tr', _t.refresh_token);
-                    resolve(response.body);
+                    if(response.statusCode < 400) {
+                        var _t = JSON.parse(response.body);
+                        cache.put('_ta', _t.access_token);
+                        cache.put('_tr', _t.refresh_token);
+                        resolve(response.body);
+                    } else {
+                        reject(response.body);
+                    }
                 }
             });
         })
@@ -135,8 +162,15 @@ module.exports = {
         };
         return new Promise((resolve, reject) => {
             request(options, function (error, response) {
-                if (error) reject(error);
-                resolve(response.body);
+                if (error) {
+                    reject(error);
+                } else {
+                    if(response.statusCode < 400) {
+                        resolve(response.body);
+                    } else {
+                        reject(response.body);
+                    }
+                }
             });
         })
     },
@@ -157,10 +191,11 @@ module.exports = {
                 if (error) {
                     reject(error);
                 } else {
-                    var _t = JSON.parse(response.body);
-                    cache.put('_ta', _t.access_token);
-                    cache.put('_tr', _t.refresh_token);
-                    resolve(response.body);
+                    if(response.statusCode < 400) {
+                        resolve(response.body);
+                    } else {
+                        reject(response.body);
+                    }
                 }
             });
         })
