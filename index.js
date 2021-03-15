@@ -199,5 +199,27 @@ module.exports = {
                 }
             });
         })
-    }
+    },
+    getPdp: (id) => {
+        var options = {
+            method: 'GET',
+            url: u._BaseAddress(bu,'/api/areaClienti/getPdp/'+id),
+            'headers': {
+              'Authorization': 'Bearer '+cache.get('_ta')
+            }
+        };
+        return new Promise((resolve, reject) => {
+            request(options, function (error, response) {
+                if (error) {
+                    reject(error);
+                } else {
+                    if(response.statusCode < 400) {
+                        resolve(response.body);
+                    } else {
+                        reject(response.body);
+                    }
+                }
+            });
+        })
+    },
 };
