@@ -32,3 +32,10 @@ router.get('/api-call', (req, res) => {
 
 module.exports = router
 ```
+
+
+REACT_APP_GRANT_TYPE=
+REACT_APP_API_KEY=
+REACT_APP_APP_ID=
+REACT_APP_CLIENT_ID=
+REACT_APP_CLIENT_SECRET=
