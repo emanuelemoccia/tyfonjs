@@ -243,5 +243,28 @@ module.exports = {
                 }
             });
         })
-    }
+    },
+    putLead: (lead) => {
+        var options = {
+            method: 'POST',
+            url: u._BaseAddress(bu,'/api/areaClienti/insertLeadAreaClienti'),
+            headers: {
+              'Content-Type': 'application/x-www-form-urlencoded'
+            },
+            form: lead
+        }
+        return new Promise((resolve, reject) => {
+            request(options, function (error, response) {
+                if (error) {
+                    reject(error);
+                } else {
+                    if(response.statusCode < 400) {
+                        resolve(response.body);
+                    } else {
+                        reject(response.body);
+                    }
+                }
+            });
+        })
+    },
 };
