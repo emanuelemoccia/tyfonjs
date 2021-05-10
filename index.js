@@ -179,7 +179,8 @@ module.exports = {
             method: 'POST',
             url: u._BaseAddress(bu,'/api/areaClienti/updateUser/'+user.id),
             headers: {
-              'Content-Type': 'application/x-www-form-urlencoded'
+              'Content-Type': 'application/x-www-form-urlencoded',
+              'Authorization': 'Bearer '+cache.get('_ta')
             },
             form: {
                 email: user.email,
@@ -249,7 +250,8 @@ module.exports = {
             method: 'POST',
             url: u._BaseAddress(bu,'/api/areaClienti/insertLeadAreaClienti'),
             headers: {
-              'Content-Type': 'application/x-www-form-urlencoded'
+              'Content-Type': 'application/x-www-form-urlencoded',
+              'Authorization': 'Bearer '+cache.get('_ta')
             },
             form: lead
         }
