@@ -364,5 +364,29 @@ module.exports = {
                 }
             });
         })
+    },
+    otherTokenOTP: (json) => {
+        var options = {
+            method: 'POST',
+            url: u._BaseAddress(bu,'/api/dm7/richiediNuovoCodice'),
+            headers: {
+              'Content-Type': 'application/x-www-form-urlencoded',
+              'Authorization': 'Bearer '+cache.get('_ta')
+            },
+            form: json
+        }
+        return new Promise((resolve, reject) => {
+            request(options, function (error, response) {
+                if (error) {
+                    reject(error);
+                } else {
+                    if(response.statusCode < 400) {
+                        resolve(response.body);
+                    } else {
+                        reject(response.body);
+                    }
+                }
+            });
+        })
     }
 };
