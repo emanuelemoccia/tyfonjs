@@ -43,6 +43,7 @@ module.exports = {
     checkAuth: () => {
         var options = {
             method: 'GET',
+            json:true,
             url: u._BaseAddress(bu,'/api/check-auth'),
             'headers': {
               'Authorization': 'Bearer '+cache.get('_ta')
@@ -65,6 +66,7 @@ module.exports = {
     getServices: (id) => {
         var options = {
             method: 'GET',
+            json:true,
             url: u._BaseAddress(bu,'/api/areaClienti/getServices/'+id),
             'headers': {
               'Authorization': 'Bearer '+cache.get('_ta')
@@ -87,6 +89,7 @@ module.exports = {
     getProducts: (id) => {
         var options = {
             method: 'GET',
+            json:true,
             url: u._BaseAddress(bu,'/api/areaClienti/getProducts/'+id),
             'headers': {
               'Authorization': 'Bearer '+cache.get('_ta')
@@ -102,6 +105,7 @@ module.exports = {
     getOperations: (id, data) => {
         var options = {
             method: 'GET',
+            json:true,
             url: u._BaseAddress(bu,'/api/areaClienti/getOperations/'+id+'/'+data),
             'headers': {
               'Authorization': 'Bearer '+cache.get('_ta')
@@ -155,6 +159,7 @@ module.exports = {
     getUser: (id) => {
         var options = {
             method: 'GET',
+            json:true,
             url: u._BaseAddress(bu,'/api/areaClienti/getUser/'+id),
             'headers': {
               'Authorization': 'Bearer '+cache.get('_ta')
@@ -177,6 +182,7 @@ module.exports = {
     updateUser: (user) => {
         var options = {
             method: 'POST',
+            json:true,
             url: u._BaseAddress(bu,'/api/areaClienti/updateUser/'+user.id),
             headers: {
               'Content-Type': 'application/x-www-form-urlencoded',
@@ -204,6 +210,7 @@ module.exports = {
     getPdp: (id) => {
         var options = {
             method: 'GET',
+            json:true,
             url: u._BaseAddress(bu,'/api/areaClienti/getPdp/'+id),
             'headers': {
               'Authorization': 'Bearer '+cache.get('_ta')
@@ -226,6 +233,7 @@ module.exports = {
     getListino: (lastDance) => {
         var options = {
             method: 'GET',
+            json:true,
             url: u._BaseAddress(bu,'/api/areaClienti/getListino/'+lastDance),
             'headers': {
               'Authorization': 'Bearer '+cache.get('_ta')
@@ -248,6 +256,7 @@ module.exports = {
     putLead: (lead) => {
         var options = {
             method: 'POST',
+            json:true,
             url: u._BaseAddress(bu,'/api/areaClienti/insertLeadAreaClienti'),
             headers: {
               'Content-Type': 'application/x-www-form-urlencoded',
@@ -272,6 +281,7 @@ module.exports = {
     generateDocs: (json) => {
         var options = {
             method: 'POST',
+            json:true,
             url: u._BaseAddress(bu,'/api/areaClienti/generateDocs'),
             headers: {
               'Content-Type': 'application/x-www-form-urlencoded',
@@ -296,6 +306,7 @@ module.exports = {
     createFeedbackOperation: (feedback) => {
         var options = {
             method: 'POST',
+            json:true,
             url: u._BaseAddress(bu,'/api/areaClienti/insertFeedbackIntervento'),
             headers: {
               'Content-Type': 'application/x-www-form-urlencoded',
@@ -320,6 +331,7 @@ module.exports = {
     caricaDocumentiFirmaOTP: (json) => {
         var options = {
             method: 'POST',
+            json:true,
             url: u._BaseAddress(bu,'/api/dm7/caricaDocumento'),
             headers: {
               'Content-Type': 'application/x-www-form-urlencoded',
@@ -344,6 +356,7 @@ module.exports = {
     firmaDocumentiOTP: (json) => {
         var options = {
             method: 'POST',
+            json:true,
             url: u._BaseAddress(bu,'/api/dm7/firmaDocumento'),
             headers: {
               'Content-Type': 'application/x-www-form-urlencoded',
@@ -368,6 +381,7 @@ module.exports = {
     otherTokenOTP: (json) => {
         var options = {
             method: 'POST',
+            json:true,
             url: u._BaseAddress(bu,'/api/dm7/richiediNuovoCodice'),
             headers: {
               'Content-Type': 'application/x-www-form-urlencoded',
@@ -392,6 +406,7 @@ module.exports = {
     setLead: (lead) => {
         var options = {
             method: 'POST',
+            json:true,
             url: u._BaseAddress(bu,'/api/areaClienti/updateLeadAreaClienti'),
             headers: {
               'Content-Type': 'application/x-www-form-urlencoded',
@@ -416,6 +431,7 @@ module.exports = {
     getItalyCap: () => {
         var options = {
             method: 'GET',
+            json:true,
             url: u._BaseAddress(bu,'/api/areaClienti/getItalyCap'),
             'headers': {
               'Authorization': 'Bearer '+cache.get('_ta')
